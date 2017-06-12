@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html ondrop="return false" ondrag="return false" oncontextmenu="return false">
   <head>
     <meta charset="UTF-8">
     <title>Programación Bátiz</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="css/angular-material.min.css">
     <link rel="stylesheet" href="css/master.scss">
   </head>
   <body ng-app="SesadApp">
 
-    <div layout="row" style="background-color: #eee">
+    <div layout="row">
       <!-- View -->
       <ui-view flex></ui-view>
     </div>
 
 
     <!-- Dependencies -->
+    <script src="js/dependencies/moment-with-locales.min.js" charset="utf-8"></script>
     <script src="js/dependencies/angular.min.js" charset="utf-8"></script>
     <script src="js/dependencies/angular-ui-router.min.js" charset="utf-8"></script>
     <script src="js/dependencies/angular-animate.min.js" charset="utf-8"></script>

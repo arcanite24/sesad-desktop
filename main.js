@@ -1,4 +1,5 @@
 const electron = require('electron')
+const { ipcMain } = require('electron')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -8,8 +9,13 @@ const url = require('url')
 
 let mainWindow
 
+ipcMain.on('unlock-pc', (event, args) => {
+  mainWindow.setFullScreen(false);
+  mainWindow.minimize();
+});
+
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 800, height: 600, frame: false})
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
@@ -17,7 +23,7 @@ function createWindow () {
   }))
 
   mainWindow.maximize();
-  //mainWindow.setFullScreen(true);  
+  mainWindow.setFullScreen(true);
 
   // mainWindow.webContents.openDevTools()
 

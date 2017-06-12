@@ -29,3 +29,9 @@ angular.module('SesadApp').run(function ($rootScope, $state) {
   });
 
 });
+
+moment.locale('es');
+
+document.onkeydown = function (e) {
+  
+}

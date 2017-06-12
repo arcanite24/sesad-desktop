@@ -1,5 +1,5 @@
 <div layout="column" layout-fill>
-  <md-toolbar>
+  <md-toolbar class="md-primary md-hue-2">
 
     <div class="md-toolbar-tools">
       <h2 md-truncate flex>SESAD</h2>
@@ -11,24 +11,78 @@
 
   </md-toolbar>
   <md-content>
-    <div layout="row" layout-margin>
-      <md-card flex="50" ng-init="home.loadHorario()">
+    <!-- Alumno -->
+    <div layout="row" layout-align="center center" layout-margin>
+      <md-card flex="33" ng-init="home.loadHorario()" class="animated fadeInLeft">
         <img src="images/header-horario.png" alt="Horario">
         <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
         <md-card-content>
           <md-list>
-            <md-list-item ng-repeat="clase in home.clasesHoy">
-              {{clase.name}}
+            <md-liste-item ng-if="home.clasesHoy.length <= 0">
+              <h3 class="c54">No tienes clases hoy.</h3>
+            </md-liste-item>
+            <md-list-item ng-repeat="clase in home.clasesHoy" class="md-2-line list-item">
+              <div class="md-list-item-text">
+                <h3>{{clase.materia.name}}</h3>
+                <p>{{clase.salon.name}} | {{clase.inicio}} - {{clase.fin}}</p>
+              </div>
             </md-list-item>
           </md-list>
         </md-card-content>
       </md-card>
 
-      <md-card flex="50">
-        <img src="images/header-unlock.png" alt="Horario">
+      <md-card flex="33" class="animated fadeInDown">
+        <img src="images/header-unlock.png" alt="Desbloquear">
         <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
         <md-card-content>
-          hola
+          <h4 class="md-headline c54">Para usar ésta máquina ingresa el código generado por el sistema.</h4>
+          <h5 class="md-subhead" ng-if="!home.objeto">Imposible desbloquear la máquina, no hay un objeto vinculado al equipo.</h5>
+          <div layout="column" flex>
+            <md-input-container class="md-block" flex="100">
+              <label>Código</label>
+              <input ng-model="home.unlockCode" type="text">
+            </md-input-container>
+            <div flex="100" layout="row" layout-align="center center">
+              <md-button class="md-raised md-primary md-hue-2" ng-disabled="!home.objeto" ng-click="home.unlock(home.unlockCode)">Desbloquear</md-button>
+            </div>
+          </div>
+        </md-card-content>
+      </md-card>
+
+      <md-card flex="33" class="animated fadeInRight" ng-init="home.loadReservas()">
+        <img src="images/header-reservas.png" alt="Reservas">
+        <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
+        <md-card-content>
+          <md-list>
+            <md-liste-item ng-if="home.allReservas.length <= 0">
+              <h3 class="c54">No tienes reservas agendadas.</h3>
+            </md-liste-item>
+            <md-list-item ng-repeat="r in home.allReservas" class="md-3-line list-item">
+              <div class="md-list-item-text">
+                <h3><strong>{{r.item.name}}</strong> | {{r.horaIn}}:00  - {{r.horaOut}}:00</h3>
+                <p>{{r.salon.name}}</p>
+                <p><strong>Código: </strong> {{r.code ? r.code : 'Sin código'}}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div layout="row" layout-align="center center" layout-margin>
+      <!-- Admin -->
+      <md-card flex="33" class="animated fadeInLeft" ng-init="home.loadItems()">
+        <img src="images/header-config.png" alt="Configurars">
+        <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
+        <md-card-content layout="column">
+          <h4 class="md-subhead" ng-init="home.loadLocalItem()">Objeto seleccionado: <strong>{{home.objeto ? home.objeto.name : 'Ninguno'}}</strong></h4>
+          <div layout="row" layout-margin>
+            <md-input-container flex="100">
+              <md-select ng-model="home.choosedItem" placeholder="Seleccionar objeto" aria-label="Seleccionar objeto">
+                <md-option ng-value="item.id" ng-repeat="item in home.allItems"><strong>{{item.name}}</strong> - {{item.salon.name}}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <md-button class="md-raised md-primary" ng-click="home.saveItem(home.choosedItem)" ng-disabled="!home.choosedItem">Guardar</md-button>
         </md-card-content>
       </md-card>
     </div>

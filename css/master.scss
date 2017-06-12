@@ -2,18 +2,43 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-ui-view.ng-enter {
-    /* transition on enter for .5s */
-    transition: .5s;
+// Colors
+.c87 {
+  color: rgba(0, 0, 0, 0.87);
+}
 
-    /* start with opacity 0 (invisible) */
+.c54 {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+// View Transitions
+ui-view.ng-enter {
+    transition: .5s;
     opacity: 0;
 }
 
-/* end 'enter' transition on main view */
 ui-view.ng-enter-active {
-    /* end with opacity 1 (fade in) */
     opacity: 1;
+}
+
+// List Transitions
+.list-item.ng-enter {
+  transition: all 0.5s linear;
+  max-height: 0;
+  overflow-y: hidden;
+}
+.list-item.ng-enter.ng-enter-active {
+  max-height: 20px;
+}
+.list-item.ng-leave {
+  transition: all 0.5s linear;
+  max-height: 20px;
+  overflow-y: hidden;
+}
+.list-item.ng-leave.ng-leave-active {
+  max-height: 0;
 }

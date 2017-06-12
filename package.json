@@ -19,5 +19,8 @@
   "devDependencies": {
     "electron": "~1.6.2",
     "electron-prebuilt-compile": "^1.6.8"
+  },
+  "dependencies": {
+    "moment": "^2.18.1"
   }
 }
