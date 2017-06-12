@@ -1,0 +1,36 @@
+<div layout="column" layout-fill>
+  <md-toolbar>
+
+    <div class="md-toolbar-tools">
+      <h2 md-truncate flex>SESAD</h2>
+
+      <md-button ng-click="home.logout()">
+        Cerrar Sesión
+      </md-button>
+    </div>
+
+  </md-toolbar>
+  <md-content>
+    <div layout="row" layout-margin>
+      <md-card flex="50" ng-init="home.loadHorario()">
+        <img src="images/header-horario.png" alt="Horario">
+        <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
+        <md-card-content>
+          <md-list>
+            <md-list-item ng-repeat="clase in home.clasesHoy">
+              {{clase.name}}
+            </md-list-item>
+          </md-list>
+        </md-card-content>
+      </md-card>
+
+      <md-card flex="50">
+        <img src="images/header-unlock.png" alt="Horario">
+        <md-progress-linear mode="indeterminate" ng-show="home.loader"></md-progress-linear>
+        <md-card-content>
+          hola
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-content>
+</div>

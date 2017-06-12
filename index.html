@@ -2,16 +2,35 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Programación Bátiz</title>
+    <link rel="stylesheet" href="css/angular-material.min.css">
+    <link rel="stylesheet" href="css/master.scss">
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+  <body ng-app="SesadApp">
 
+    <div layout="row" style="background-color: #eee">
+      <!-- View -->
+      <ui-view flex></ui-view>
+    </div>
+
+
+    <!-- Dependencies -->
+    <script src="js/dependencies/angular.min.js" charset="utf-8"></script>
+    <script src="js/dependencies/angular-ui-router.min.js" charset="utf-8"></script>
+    <script src="js/dependencies/angular-animate.min.js" charset="utf-8"></script>
+    <script src="js/dependencies/angular-aria.min.js" charset="utf-8"></script>
+    <script src="js/dependencies/angular-messages.min.js" charset="utf-8"></script>
+    <script src="js/dependencies/angular-material.min.js" charset="utf-8"></script>
+    <!-- App -->
+    <script src="js/app/app.js" charset="utf-8"></script>
+    <script src="js/app/app.routes.js" charset="utf-8"></script>
+    <script src="js/app/app.theme.js" charset="utf-8"></script>
+    <!-- Providers -->
+    <script src="js/app/backend.service.js" charset="utf-8"></script>
+    <!-- Controllers -->
+    <script src="js/controllers/login.controller.js" charset="utf-8"></script>
+    <script src="js/controllers/home.controller.js" charset="utf-8"></script>
+  </body>
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')

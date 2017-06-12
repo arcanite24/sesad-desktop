@@ -1,0 +1,35 @@
+<style media="screen">
+  .login-container {
+    height: 100vh;
+    background-color: #eee;
+  }
+  .login-header-img {
+    width: 100%;
+  }
+  .login-card {
+    background-color: white;
+  }
+</style>
+<form ng-submit="login.auth(login.username, login.password)">
+  <div layout="row" layout-align="center center" class="login-container">
+    <div flex-xs="90" flex-gt-xs="40" class="login-card md-whiteframe-1dp" layout="column">
+      <div flex="100">
+        <img src="images/logo-header.png" alt="SESAD" class="login-header-img">
+      </div>
+      <div flex="100" class="login-body" layout="column" layout-margin>
+        <md-input-container class="md-block" flex="100">
+          <label>Nombre de usuario / Boleta</label>
+          <input ng-model="login.username" required>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+          <label>Contraseña</label>
+          <input ng-model="login.password" type="password" required>
+        </md-input-container>
+      </div>
+      <div flex="100" layout="row" layout-align="center center" layout-margin>
+        <md-button class="md-raised md-primary" type="submit">Iniciar Sesión</md-button>
+      </div>
+      <md-progress-linear md-mode="indeterminate" ng-show="login.loader"></md-progress-linear>
+    </div>
+  </div>
+</form>
